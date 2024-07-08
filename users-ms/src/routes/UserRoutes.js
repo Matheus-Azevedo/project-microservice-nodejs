@@ -8,6 +8,6 @@ router.get("/users", verifyJWT, UserController.findAll);
 
 router.get("/users/:username", UserController.findByUserName);
 
-router.post("/users", verifyJWT, UserController.create);
+router.post("/users", UserController.create);
 
 export default router;

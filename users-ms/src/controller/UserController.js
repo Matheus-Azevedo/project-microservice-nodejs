@@ -28,8 +28,10 @@ export class UserController {
     }
   }
 
-  static async findAll(_req, res) {
+  static async findAll(req, res) {
     try {
+      const token = req.headers["authorization"];
+
       const users = await User.findAll({
         attributes: { exclude: ["password", "createdAt", "updatedAt"] },
       });
@@ -38,14 +40,24 @@ export class UserController {
         users.map(async (user) => {
           try {
             const { data: posts } = await axios.get(
-              `${process.env.POST_SERVICE_URL}/posts/user/${user.id}`
+              `${process.env.POST_SERVICE_URL}/posts/user/${user.id}`,
+              {
+                headers: {
+                  Authorization: token,
+                },
+              }
             );
 
             const postsAndComments = await Promise.all(
               posts.map(async (post) => {
                 try {
                   const { data: comments } = await axios.get(
-                    `${process.env.COMMENT_SERVICE_URL}/comments/post/${post.id}`
+                    `${process.env.COMMENT_SERVICE_URL}/comments/post/${post.id}`,
+                    {
+                      headers: {
+                        Authorization: token,
+                      },
+                    }
                   );
                   return { ...post, comments };
                 } catch (error) {
