@@ -28,10 +28,6 @@ Este projeto tem como objetivo implementar um sistema de autenticação e autori
 
     - No diretório de cada microserviço, execute:
 
-      bash
-
-      Copy code
-
       `npm install`
 
 2.  **Variáveis de Ambiente**:
@@ -42,19 +38,11 @@ Este projeto tem como objetivo implementar um sistema de autenticação e autori
 
     - Inicie cada microserviço individualmente:
 
-      bash
-
-      Copy code
-
       `npm start`
 
 4.  **API Gateway**:
 
     - Utilize a URL padrão para chamadas via API Gateway:
-
-      bash
-
-      Copy code
 
       `http://localhost:3000/nome_microservico/endpoint`
 
@@ -62,16 +50,8 @@ Este projeto tem como objetivo implementar um sistema de autenticação e autori
 
 - **Consulta de Usuários**:
 
-  bash
-
-  Copy code
-
   `GET http://localhost:3000/users-ms/users`
 
 - **Login e Geração de Token**:
-
-  bash
-
-  Copy code
 
   `POST http://localhost:3000/auth-ms/login`
